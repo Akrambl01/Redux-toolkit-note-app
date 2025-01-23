@@ -1,21 +1,24 @@
-import styled from 'styled-components';
-import { FaPlus } from 'react-icons/fa';
+import styled from "styled-components";
+import { FaPlus } from "react-icons/fa";
 
 const Button = styled.button`
-  background: #007bff;
+  background: #000000;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: #0056b3;
+    background: #363636;
+    // animation
+    transform: scale(1.1);
+    transition: all 0.6s ease;
   }
 `;
 
