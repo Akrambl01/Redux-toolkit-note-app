@@ -53,7 +53,7 @@ const GlobalStyles = createGlobalStyle`
     --border-radius-tiny: 3px;
     --border-radius-sm: 5px;
     --border-radius-md: 7px;
-    --border-radius-lg: 9px;
+    --border-radius-lg: 11px;
   
     /* For dark mode */
     --image-grayscale: 0;

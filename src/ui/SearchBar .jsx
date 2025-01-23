@@ -9,12 +9,12 @@ const SearchContainer = styled.div`
   border-radius: 8px;
   padding: 5px 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  width: 30rem;
+  max-width: 38rem;
+  min-width: 27rem;
   & span {
-    color: var( --color-grey-500);
+    color: var(--color-grey-500);
     padding: 5px 0px 0px 2px;
   }
-  
 `;
 
 const Input = styled.input`

@@ -77,7 +77,7 @@ export default function AddNoteModal({ isOpen, onClose, onSave }) {
                 key={colorItem.id}
                 type={colorItem.color}
                 onClick={() => setColor(colorItem.color)}
-                isActive={color === colorItem.color }
+                isActive={color === colorItem.color}
               />
             ))}
           </div>

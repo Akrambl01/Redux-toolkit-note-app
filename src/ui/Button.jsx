@@ -21,43 +21,45 @@ const sizes = {
   `,
 };
 
-const variations = {
-  primary: css`
-    color: var(--color-brand-50);
-    background-color: var(--color-grey-900);
+// const variations = {
+//   primary: css`
+//     color: var(--color-brand-50);
+//     background-color: var(--color-grey-900);
 
-    &:hover {
-      background-color: var(--color-grey-800);
-    }
-  `,
-  secondary: css`
-    color: var(--color-grey-600);
-    background: var(--color-grey-0);
-    border: 1px solid var(--color-grey-200);
+//     &:hover {
+//       background-color: var(--color-grey-800);
+//     }
+//   `,
+//   secondary: css`
+//     color: var(--color-grey-600);
+//     background: var(--color-grey-0);
+//     border: 1px solid var(--color-grey-200);
 
-    &:hover {
-      background-color: var(--color-grey-50);
-    }
-  `,
-  danger: css`
-    color: var(--color-red-100);
-    background-color: var(--color-red-700);
+//     &:hover {
+//       background-color: var(--color-grey-50);
+//     }
+//   `,
+//   danger: css`
+//     color: var(--color-red-100);
+//     background-color: var(--color-red-700);
 
-    &:hover {
-      background-color: var(--color-red-800);
-    }
-  `,
-};
+//     &:hover {
+//       background-color: var(--color-red-800);
+//     }
+//   `,
+// };
 
 const Button = styled.button`
+  color: var(--color-brand-50);
+  background-color: var(--color-grey-900);
   border: none;
   margin-top: 2.5rem;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
   ${(props) => sizes[props.size]}
-  ${(props) => variations[props.variation]}
 
   &:hover {
+    background-color: var(--color-grey-800);
     scale: 1.02;
     transition: all 0.5s ease;
   }
@@ -70,7 +72,7 @@ const Button = styled.button`
 
 Button.defaultProps = {
   size: "medium",
-  variation: "primary",
+  // variation: "primary",
 };
 
 export default Button;

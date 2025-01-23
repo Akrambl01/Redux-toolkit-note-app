@@ -4,6 +4,8 @@ import Row from "../ui/Row";
 import SearchBar from "../ui/SearchBar ";
 import AddNoteModal from "../ui/AddNoteModal";
 import GridContainer from "../ui/GirdContainer";
+import ButtonIcon from "../ui/ButtonIcon";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const initialNotes = [
   {
@@ -73,8 +75,17 @@ function Notes() {
   const [notes, setNotes] = useState(initialNotes);
 
   const handleAddNote = (note) => {
-    setNotes((prevNotes) => [...prevNotes, { ...note, id: Date.now() }]);
+    setNotes((prevNotes) => [{ ...note, id: Date.now() }, ...prevNotes]);
   };
+
+  const handleDelete = (id) => {
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+  }
+
+  const handleEdit = (id) => {
+    console.log("Edit note with id:", id);
+    setModalOpen(true);
+  }
 
   return (
     <Row type="vertical">
@@ -90,10 +101,26 @@ function Notes() {
         {/* Your main content */}
         <GridContainer>
           {notes.map((note) => (
-            <div key={note.id} style={{ backgroundColor: note.color }}>
-              <h3>{note.title}</h3>
-              <p>{note.description}</p>
-              <span>{note.time}</span>
+            <div
+              className="noteItem"
+              key={note.id}
+              style={{ backgroundColor: note.color }}
+            >
+              <div>
+                <h3>{note.title}</h3>
+                <p>{note.description}</p>
+              </div>
+              <Row type="horizontal">
+                <span className="time">{note.time}</span>
+                <span className="actions">
+                  <ButtonIcon onClick={() => handleEdit(note.id)}>
+                    <MdEdit />
+                  </ButtonIcon>
+                  <ButtonIcon onClick={() => handleDelete(note.id)}>
+                    <MdDelete />
+                  </ButtonIcon>
+                </span>
+              </Row>
             </div>
           ))}
         </GridContainer>
