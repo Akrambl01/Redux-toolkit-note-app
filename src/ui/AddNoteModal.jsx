@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import Input from "./Input";
 import FormRow from "./FormRow";
@@ -7,8 +7,8 @@ import Form from "./Form";
 import DateInput from "./DateInput";
 import Textarea from "./Textarea";
 import { ColorCircle, ColorContainer } from "./ColorCircle";
-import { addNote } from "../features/notes/noteSlice";
-import { useDispatch } from "react-redux";
+import { addNote, updateNote } from "../features/notes/noteSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const colorsObj = [
   { id: 1, color: "#db5050" },
@@ -24,10 +24,28 @@ export default function AddNoteModal() {
   const [time, setTime] = useState(new Date());
   const [color, setColor] = useState("");
   const dispatch = useDispatch();
+  const isEditing = useSelector((state) => state.note.isEditing);
+  console.log(isEditing);
+
+  const notes = useSelector((state) => state.note.notes);
+
+  useEffect(() => {
+    if (isEditing) {
+      const note = notes.find((note) => note.id == isEditing);
+      setTitle(note.title);
+      setDescription(note.description);
+      setTime(note.time);
+      setColor(note.color);
+    }
+  }, [isEditing, notes]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNote({ title, description, time, color, id: Date.now() }));
+
+    isEditing
+      ? dispatch(updateNote({ title, description, time, color }))
+      : dispatch(addNote({ title, description, time, color, id: Date.now() }));
+
     setTitle("");
     setDescription("");
     setTime("");

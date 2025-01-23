@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AddButton from "../ui/AddButton";
 import Row from "../ui/Row";
 import SearchBar from "../ui/SearchBar ";
@@ -6,23 +5,12 @@ import AddNoteModal from "../ui/AddNoteModal";
 import GridContainer from "../ui/GirdContainer";
 import ButtonIcon from "../ui/ButtonIcon";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { deleteNote, showModel } from "../features/notes/noteSlice";
+import { deleteNote, editMode, showModel } from "../features/notes/noteSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Notes() {
-  // const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const notes = useSelector((state) => state.note.notes);
-  console.log(notes);
-
-  // const handleDelete = (id) => {
-  //   setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
-  // };
-
-  const handleEdit = (id) => {
-    console.log("Edit note with id:", id);
-    dispatch(showModel());
-  };
 
   return (
     <Row type="vertical">
@@ -35,7 +23,7 @@ function Notes() {
       </Row>
       <Row>
         <h1>Notes</h1>
-        {/* Your main content */}
+        {/* main content */}
         <GridContainer>
           {notes.map((note) => (
             <div
@@ -50,7 +38,7 @@ function Notes() {
               <Row type="horizontal">
                 <span className="time">{note.time}</span>
                 <span className="actions">
-                  <ButtonIcon onClick={() => handleEdit(note.id)}>
+                  <ButtonIcon onClick={() => dispatch(editMode(note.id))}>
                     <MdEdit />
                   </ButtonIcon>
                   <ButtonIcon onClick={() => dispatch(deleteNote(note.id))}>

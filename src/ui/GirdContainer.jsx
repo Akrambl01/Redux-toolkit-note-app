@@ -38,9 +38,9 @@ const GridContainer = styled.div`
   & .actions{
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
-    margin
+    gap: 1.7rem;
   }
+
 
 `;
 

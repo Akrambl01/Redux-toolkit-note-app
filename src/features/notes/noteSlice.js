@@ -65,6 +65,7 @@ const initialNotes = [
 const initialState = {
   notes: initialNotes,
   isModalOpen: false,
+  isEditing: false,
 };
 
 const noteSlice = createSlice({
@@ -75,17 +76,22 @@ const noteSlice = createSlice({
       state.notes.unshift(action.payload);
       state.isModalOpen = false;
     },
+
     deleteNote: (state, action) => {
       state.notes = state.notes.filter((note) => note.id !== action.payload);
     },
+
     updateNote: (state, action) => {
-      const { id, title, description, time, color } = action.payload;
-      const note = state.notes.find((note) => note.id === id);
+      const { title, description, time, color } = action.payload;
+      const note = state.notes.find((note) => note.id === state.isEditing);
       note.title = title;
       note.description = description;
       note.time = time;
       note.color = color;
+      state.isModalOpen = false;
+      state.isEditing = "";
     },
+
     showModel: (state) => {
       state.isModalOpen = true;
     },
@@ -93,11 +99,22 @@ const noteSlice = createSlice({
     hideModel: (state) => {
       state.isModalOpen = false;
     },
+
+    editMode: (state, action) => {
+      state.isEditing = action.payload;
+      state.isModalOpen = true;
+    },
   },
 });
 
-export const { addNote, deleteNote, updateNote, showModel, hideModel } =
-  noteSlice.actions;
+export const {
+  addNote,
+  deleteNote,
+  updateNote,
+  showModel,
+  hideModel,
+  editMode,
+} = noteSlice.actions;
 export default noteSlice.reducer;
 
 export const getNotes = (state) => state.notes;
