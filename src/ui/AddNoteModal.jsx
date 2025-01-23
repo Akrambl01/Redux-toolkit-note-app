@@ -8,8 +8,8 @@ import DateInput from "./DateInput";
 import Textarea from "./Textarea";
 import { ColorCircle, ColorContainer } from "./ColorCircle";
 
-const colors = [
-  { id: 1, color: "red" },
+const colorsObj = [
+  { id: 1, color: "#db5050" },
   { id: 2, color: "blue" },
   { id: 3, color: "green" },
   { id: 4, color: "purple" },
@@ -72,17 +72,18 @@ export default function AddNoteModal({ isOpen, onClose, onSave }) {
         <ColorContainer>
           <label htmlFor="color">Colors</label>
           <div>
-            {colors.map((color) => (
+            {colorsObj.map((colorItem) => (
               <ColorCircle
-                key={color.id}
-                type={color.color}
-                onClick={() => setColor(color.color)}
+                key={colorItem.id}
+                type={colorItem.color}
+                onClick={() => setColor(colorItem.color)}
+                isActive={color === colorItem.color }
               />
             ))}
           </div>
         </ColorContainer>
 
-        <Button>Save</Button>
+        <Button size="large" >Save</Button>
       </Form>
     </Modal>
   );

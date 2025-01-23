@@ -14,7 +14,8 @@ const sizes = {
     font-weight: 500;
   `,
   large: css`
-    font-size: 1.6rem;
+    width: 100%;
+    font-size: 2rem;
     padding: 1.2rem 2.4rem;
     font-weight: 500;
   `,
@@ -23,10 +24,10 @@ const sizes = {
 const variations = {
   primary: css`
     color: var(--color-brand-50);
-    background-color: var(--color-brand-600);
+    background-color: var(--color-grey-900);
 
     &:hover {
-      background-color: var(--color-brand-700);
+      background-color: var(--color-grey-800);
     }
   `,
   secondary: css`
@@ -50,10 +51,21 @@ const variations = {
 
 const Button = styled.button`
   border: none;
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--border-radius-sm);
+  margin-top: 2.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+
+  &:hover {
+    scale: 1.02;
+    transition: all 0.5s ease;
+  }
+
+  &:active {
+    scale: 0.93;
+    transition: all 0.2s;
+  }
 `;
 
 Button.defaultProps = {

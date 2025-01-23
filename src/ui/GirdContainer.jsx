@@ -1,8 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  // flexible grid layout with wrapping columns 4 for default 
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
   padding: 2rem;
 
@@ -12,11 +13,8 @@ const GridContainer = styled.div`
     border-radius: var(--border-radius-sm);
     border: 1px solid var(--color-grey-100);
     max-height: 40rem;
+    background-color: var(--color-blue-100);
   }
 `;
-
-// GridContainer.defaultProps = {
-//   type: "pink",
-// };
 
 export default GridContainer;

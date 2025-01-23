@@ -11,6 +11,7 @@ const initialNotes = [
     title: "My first note",
     description: "This is my first note",
     time: "12:00",
+    color: "#db5050",
   },
   {
     id: 2,
@@ -23,12 +24,53 @@ const initialNotes = [
     title: "My third note",
     description: "This is my third note",
     time: "12:00",
+    color: "pink",
+  },
+  {
+    id: 4,
+    title: "My first note",
+    description: "This is my first note",
+    time: "12:00",
+    color: "#db5050",
+  },
+  {
+    id: 55,
+    title: "My second note",
+    description: "This is my second note",
+    time: "12:00",
+  },
+  {
+    id: 57,
+    title: "My third note",
+    description: "This is my third note",
+    time: "12:00",
+    color: "pink",
+  },
+  {
+    id: 24,
+    title: "My first note",
+    description: "This is my first note",
+    time: "12:00",
+    color: "#db5050",
+  },
+  {
+    id: 86,
+    title: "My second note",
+    description: "This is my second note",
+    time: "12:00",
+  },
+  {
+    id: 23,
+    title: "My third note",
+    description: "This is my third note",
+    time: "12:00",
+    color: "pink",
   },
 ];
 
 function Notes() {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(initialNotes);
 
   const handleAddNote = (note) => {
     setNotes((prevNotes) => [...prevNotes, { ...note, id: Date.now() }]);
