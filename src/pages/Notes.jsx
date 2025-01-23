@@ -1,9 +1,10 @@
 import AddButton from "../ui/AddButton";
 import Row from "../ui/Row";
-import SearchBar from "../ui/SearchBar ";
 import AddNoteModal from "../ui/AddNoteModal";
 import GridContainer from "../ui/GirdContainer";
 import ButtonIcon from "../ui/ButtonIcon";
+import Logo from "../ui/Logo";
+import Heading from "../ui/Heading";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { deleteNote, editMode, showModel } from "../features/notes/noteSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,14 +16,13 @@ function Notes() {
   return (
     <Row type="vertical">
       <Row type="horizontal">
-        <h1>My Notes</h1>
+        <Logo />
       </Row>
       <Row type="horizontal">
         <AddButton onClick={() => dispatch(showModel())} />
-        <SearchBar />
       </Row>
       <Row>
-        <h1>Notes</h1>
+        <Heading as="h3">Notes</Heading>
         {/* main content */}
         <GridContainer>
           {notes.map((note) => (

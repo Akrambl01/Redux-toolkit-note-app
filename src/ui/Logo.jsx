@@ -5,15 +5,13 @@ const StyledLogo = styled.div`
   gap: 0.8rem;
   width: 100%;
   text-align: center;
-  padding: 1.6rem;
 `;
 
 const Img = styled.img`
-  /* height: 9.6rem; */
-  width: 30px;
+  width: 38px;
 `;
 const TextLogo = styled.p`
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 0.8rem;
   font-weight: 600;
 `;
@@ -22,7 +20,7 @@ function Logo() {
   return (
     <StyledLogo>
       <Img src="/redux.svg" alt="Logo" />
-      <TextLogo>RTK Simple To Do List</TextLogo>
+      <TextLogo>RTK Simple Notes</TextLogo>
     </StyledLogo>
   );
 }

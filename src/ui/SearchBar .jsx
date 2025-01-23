@@ -1,6 +1,7 @@
 // src/components/SearchBar.jsx
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -26,7 +27,11 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const SearchBar = ({ value, onChange }) => {
+const SearchBar = () => {
+  const [search, setSearch] = useState("");
+  const handleChange = (value) => {
+    setSearch(value);
+  };
   return (
     <SearchContainer>
       <span>
@@ -35,8 +40,8 @@ const SearchBar = ({ value, onChange }) => {
       <Input
         type="text"
         placeholder="Search notes..."
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={search}
+        onChange={(e) => handleChange(e.target.value)}
       />
     </SearchContainer>
   );

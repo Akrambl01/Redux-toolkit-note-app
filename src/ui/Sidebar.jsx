@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "./Logo";
+
 import MainNav from "./MainNav";
 
 const StyleSideBar = styled.aside`
@@ -16,7 +16,6 @@ const StyleSideBar = styled.aside`
 function Sidebar() {
   return (
     <StyleSideBar>
-      <Logo />
       <MainNav />
     </StyleSideBar>
   );

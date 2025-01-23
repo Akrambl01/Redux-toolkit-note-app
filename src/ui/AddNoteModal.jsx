@@ -11,21 +11,21 @@ import { addNote, updateNote } from "../features/notes/noteSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const colorsObj = [
-  { id: 1, color: "#db5050" },
-  { id: 2, color: "blue" },
-  { id: 3, color: "green" },
-  { id: 4, color: "purple" },
-  { id: 5, color: "pink" },
+  { id: 1, color: "#FE9B72" },
+  { id: 2, color: "#FEC971" },
+  { id: 3, color: "#00D4FE" },
+  { id: 4, color: "#B693FD" },
+  { id: 5, color: "#E4EE8E" },
 ];
 
 export default function AddNoteModal() {
+  const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState();
   const [color, setColor] = useState("");
   const dispatch = useDispatch();
   const isEditing = useSelector((state) => state.note.isEditing);
-  console.log(isEditing);
 
   const notes = useSelector((state) => state.note.notes);
 
@@ -42,6 +42,10 @@ export default function AddNoteModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!title || !description || !time) {
+      setError(true);
+      return;
+    }
     isEditing
       ? dispatch(updateNote({ title, description, time, color }))
       : dispatch(addNote({ title, description, time, color, id: Date.now() }));
@@ -56,36 +60,33 @@ export default function AddNoteModal() {
     <Modal>
       <h2>Add Note</h2>
       <Form onSubmit={handleSubmit}>
-        <FormRow label={"Title"} error={title ? null : "Title is required"}>
+        <FormRow label={"Title"} error={error && !title && "Title is required"}>
           <Input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
           />
         </FormRow>
 
-        <FormRow label={"Date"} error={title ? null : "Date is required"}>
+        <FormRow label={"Date"} error={error && !time && "Date is required"}>
           <DateInput
             type="Date"
             id="Date"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            required
           />
         </FormRow>
 
         <FormRow
           label={"Description"}
-          error={description ? null : "Description is required"}
+          error={error && !description && "Description is required"}
         >
           <Textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             maxLength={200}
-            required
           />
         </FormRow>
 

@@ -45,29 +45,29 @@ export const ColorCircle = styled.span`
     `}
 
   ${(props) =>
-    props.type === "pink" &&
+    props.type === "#E4EE8E" &&
     css`
-      background-color: var(--color-pink-700);
+      background-color: #E4EE8E;
     `}
   ${(props) =>
-    props.type === "blue" &&
+    props.type === "#B693FD" &&
     css`
-      background-color: var(--color-blue-700);
+      background-color: #B693FD;
     `}
     ${(props) =>
-    props.type === "green" &&
+    props.type === "#00D4FE" &&
     css`
-      background-color: var(--color-green-700);
+      background-color: #00D4FE;
     `}
     ${(props) =>
-    props.type === "purple" &&
+    props.type === "#FEC971" &&
     css`
-      background-color: var(--color-purple-700);
+      background-color: #FEC971;
     `}
     ${(props) =>
-    props.type === "#db5050" &&
+    props.type === "#FE9B72" &&
     css`
-      background-color: var(--color-red-700);
+      background-color: #FE9B72;
     `}
 `;
 

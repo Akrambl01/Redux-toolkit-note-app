@@ -3,9 +3,45 @@ import styled from "styled-components";
 import { LuNotebookPen } from "react-icons/lu";
 
 const NavList = styled.ul`
+margin-top: 3.2rem; ;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.2rem 2.4rem;
+  color: var(--color-grey-600);
+  font-size: 1.6rem;
+  font-weight: 500;
+  transition: all 0.3s;
+
+  &:hover,
+  &:active {
+    color: var(--color-grey-800);
+    background-color: var(--color-grey-50);
+    border-radius: var(--border-radius-sm);
+  }
+
+  & span {
+    font-weight: 600;
+  }
+
+  svg.toggle {
+    font-size: 2.3rem;
+    color: var(--color-grey-700);
+    cursor: pointer;
+  }
+
+  /* svg.toggle:hover {
+    background-color: var(--color-grey-300);
+    border-radius: 50%;
+    padding: 3px;
+  } */
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -51,9 +87,13 @@ function MainNav() {
   return (
     <nav>
       <NavList>
+        <Menu>
+          <span>Menu</span>
+          {/* <RiMenuUnfold4Fill className="toggle" /> */}
+        </Menu>
         <li>
           <StyledNavLink to="/notes">
-          <LuNotebookPen />
+            <LuNotebookPen />
             <span>My Notes</span>
           </StyledNavLink>
         </li>
