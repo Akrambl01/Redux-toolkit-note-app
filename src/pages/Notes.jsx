@@ -6,86 +6,23 @@ import AddNoteModal from "../ui/AddNoteModal";
 import GridContainer from "../ui/GirdContainer";
 import ButtonIcon from "../ui/ButtonIcon";
 import { MdDelete, MdEdit } from "react-icons/md";
-
-const initialNotes = [
-  {
-    id: 1,
-    title: "My first note",
-    description: "This is my first note",
-    time: "12:00",
-    color: "#db5050",
-  },
-  {
-    id: 2,
-    title: "My second note",
-    description: "This is my second note",
-    time: "12:00",
-  },
-  {
-    id: 3,
-    title: "My third note",
-    description: "This is my third note",
-    time: "12:00",
-    color: "pink",
-  },
-  {
-    id: 4,
-    title: "My first note",
-    description: "This is my first note",
-    time: "12:00",
-    color: "#db5050",
-  },
-  {
-    id: 55,
-    title: "My second note",
-    description: "This is my second note",
-    time: "12:00",
-  },
-  {
-    id: 57,
-    title: "My third note",
-    description: "This is my third note",
-    time: "12:00",
-    color: "pink",
-  },
-  {
-    id: 24,
-    title: "My first note",
-    description: "This is my first note",
-    time: "12:00",
-    color: "#db5050",
-  },
-  {
-    id: 86,
-    title: "My second note",
-    description: "This is my second note",
-    time: "12:00",
-  },
-  {
-    id: 23,
-    title: "My third note",
-    description: "This is my third note",
-    time: "12:00",
-    color: "pink",
-  },
-];
+import { deleteNote, showModel } from "../features/notes/noteSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Notes() {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [notes, setNotes] = useState(initialNotes);
+  // const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const notes = useSelector((state) => state.note.notes);
+  console.log(notes);
 
-  const handleAddNote = (note) => {
-    setNotes((prevNotes) => [{ ...note, id: Date.now() }, ...prevNotes]);
-  };
-
-  const handleDelete = (id) => {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
-  }
+  // const handleDelete = (id) => {
+  //   setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+  // };
 
   const handleEdit = (id) => {
     console.log("Edit note with id:", id);
-    setModalOpen(true);
-  }
+    dispatch(showModel());
+  };
 
   return (
     <Row type="vertical">
@@ -93,7 +30,7 @@ function Notes() {
         <h1>My Notes</h1>
       </Row>
       <Row type="horizontal">
-        <AddButton onClick={() => setModalOpen(true)} />
+        <AddButton onClick={() => dispatch(showModel())} />
         <SearchBar />
       </Row>
       <Row>
@@ -116,7 +53,7 @@ function Notes() {
                   <ButtonIcon onClick={() => handleEdit(note.id)}>
                     <MdEdit />
                   </ButtonIcon>
-                  <ButtonIcon onClick={() => handleDelete(note.id)}>
+                  <ButtonIcon onClick={() => dispatch(deleteNote(note.id))}>
                     <MdDelete />
                   </ButtonIcon>
                 </span>
@@ -124,11 +61,7 @@ function Notes() {
             </div>
           ))}
         </GridContainer>
-        <AddNoteModal
-          isOpen={isModalOpen}
-          onClose={() => setModalOpen(false)}
-          onSave={handleAddNote}
-        />
+        <AddNoteModal />
       </Row>
     </Row>
   );

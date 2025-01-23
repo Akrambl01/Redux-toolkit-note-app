@@ -64,6 +64,7 @@ const initialNotes = [
 
 const initialState = {
   notes: initialNotes,
+  isModalOpen: false,
 };
 
 const noteSlice = createSlice({
@@ -71,7 +72,8 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, action) => {
-      state.notes.push(action.payload);
+      state.notes.unshift(action.payload);
+      state.isModalOpen = false;
     },
     deleteNote: (state, action) => {
       state.notes = state.notes.filter((note) => note.id !== action.payload);
@@ -84,10 +86,18 @@ const noteSlice = createSlice({
       note.time = time;
       note.color = color;
     },
+    showModel: (state) => {
+      state.isModalOpen = true;
+    },
+
+    hideModel: (state) => {
+      state.isModalOpen = false;
+    },
   },
 });
 
-export const { addNote, deleteNote, updateNote } = noteSlice.actions;
+export const { addNote, deleteNote, updateNote, showModel, hideModel } =
+  noteSlice.actions;
 export default noteSlice.reducer;
 
 export const getNotes = (state) => state.notes;

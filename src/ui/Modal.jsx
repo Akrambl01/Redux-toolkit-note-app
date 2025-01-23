@@ -1,4 +1,6 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { hideModel } from "../features/notes/noteSlice";
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -40,13 +42,16 @@ const CloseButton = styled.button`
   }
 `;
 
-export default function Modal({ isOpen, onClose, children }) {
-  if (!isOpen) return null;
+export default function Modal({ children }) {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector((state) => state.note.isModalOpen);
+
+  if (!isModalOpen) return null;
 
   return (
     <ModalWrapper>
       <ModalContent>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <CloseButton onClick={() => dispatch(hideModel())}>&times;</CloseButton>
         {children}
       </ModalContent>
     </ModalWrapper>

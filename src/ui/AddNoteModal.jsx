@@ -7,6 +7,8 @@ import Form from "./Form";
 import DateInput from "./DateInput";
 import Textarea from "./Textarea";
 import { ColorCircle, ColorContainer } from "./ColorCircle";
+import { addNote } from "../features/notes/noteSlice";
+import { useDispatch } from "react-redux";
 
 const colorsObj = [
   { id: 1, color: "#db5050" },
@@ -16,24 +18,24 @@ const colorsObj = [
   { id: 5, color: "pink" },
 ];
 
-export default function AddNoteModal({ isOpen, onClose, onSave }) {
+export default function AddNoteModal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState(new Date());
   const [color, setColor] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave({ title, description, time, color });
+    dispatch(addNote({ title, description, time, color, id: Date.now() }));
     setTitle("");
     setDescription("");
     setTime("");
-    onClose();
     setColor("");
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal>
       <h2>Add Note</h2>
       <Form onSubmit={handleSubmit}>
         <FormRow label={"Title"} error={title ? null : "Title is required"}>
@@ -83,7 +85,7 @@ export default function AddNoteModal({ isOpen, onClose, onSave }) {
           </div>
         </ColorContainer>
 
-        <Button size="large" >Save</Button>
+        <Button size="large">Save</Button>
       </Form>
     </Modal>
   );
