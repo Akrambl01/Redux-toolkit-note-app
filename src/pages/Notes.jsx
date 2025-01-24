@@ -1,6 +1,5 @@
 import AddButton from "../ui/AddButton";
 import Row from "../ui/Row";
-import AddNoteModal from "../ui/AddNoteModal";
 import GridContainer from "../ui/GirdContainer";
 import ButtonIcon from "../ui/ButtonIcon";
 import Logo from "../ui/Logo";
@@ -8,6 +7,7 @@ import Heading from "../ui/Heading";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { deleteNote, editMode, showModel } from "../features/notes/noteSlice";
 import { useDispatch, useSelector } from "react-redux";
+import AddNoteModal from "../features/notes/AddNoteModal";
 
 function Notes() {
   const dispatch = useDispatch();

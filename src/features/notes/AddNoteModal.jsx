@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Modal from "./Modal";
-import Input from "./Input";
-import FormRow from "./FormRow";
-import Button from "./Button";
-import Form from "./Form";
-import DateInput from "./DateInput";
-import Textarea from "./Textarea";
-import { ColorCircle, ColorContainer } from "./ColorCircle";
-import { addNote, updateNote } from "../features/notes/noteSlice";
+import Modal from "../../ui/Modal";
+import Input from "../../ui/Input";
+import FormRow from "../../ui/FormRow";
+import Button from "../../ui/Button";
+import Form from "../../ui/Form";
+import DateInput from "../../ui/DateInput";
+import Textarea from "../../ui/Textarea";
+import { ColorCircle, ColorContainer } from "../../ui/ColorCircle";
+import { addNote, updateNote } from "./noteSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const colorsObj = [
