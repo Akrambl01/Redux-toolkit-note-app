@@ -58,7 +58,7 @@ export default function AddNoteModal() {
 
   return (
     <Modal>
-      <h2>Add Note</h2>
+      <h2>{isEditing ? "Edit Note" : "Add Note"}</h2>
       <Form onSubmit={handleSubmit}>
         <FormRow label={"Title"} error={error && !title && "Title is required"}>
           <Input

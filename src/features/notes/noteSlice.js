@@ -29,13 +29,13 @@ const initialNotes = [
     color: "#FEC971",
   },
   {
-    id: 55,
+    id: 5,
     title: "My second note",
     description: "This is my second note",
     time: "12:00",
   },
   {
-    id: 55,
+    id: 6,
     title: "My second note",
     description: "This is my second note",
     time: "12:00",
