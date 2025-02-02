@@ -4,41 +4,47 @@ const initialNotes = [
     id: 1,
     title: "My first note",
     description: "This is my first note",
-    time: "02/02/2024",
+    time: "2024-02-02",
+    completed: true,
     color: "#FE9B72",
   },
   {
     id: 2,
     title: "My second note",
     description: "This is my second note",
-    time: "03/02/2024",
+    time: "2024-04-02",
+    completed: false,
     color: "#E4EE8E",
   },
   {
     id: 3,
     title: "My third note",
     description: "This is my third note",
-    time: "04/02/2024",
+    time: "2024-05-02",
+    completed: false,
     color: "#00D4FE",
   },
   {
     id: 4,
     title: "My first note",
     description: "This is my first note",
-    time: "06/05/2024",
+    time: "2024-02-02",
+    completed: true,
     color: "#FEC971",
   },
   {
     id: 5,
     title: "My second note",
     description: "This is my second note",
-    time: "24/05/2024",
+    time: "2024-04-02",
+    completed: false,
   },
   {
     id: 6,
     title: "My second note",
     description: "This is my second note",
-    time: "24/05/2024",
+    time: "2024-04-02",
+    completed: false,
     color: "#B693FD",
   },
 ];
@@ -85,6 +91,12 @@ const noteSlice = createSlice({
       state.isEditing = action.payload;
       state.isModalOpen = true;
     },
+    toggleComplete: (state, action) => {
+      const note = state.notes.find((note) => note.id === action.payload);
+      if (note) {
+        note.completed = !note.completed;
+      }
+    },
   },
 });
 
@@ -95,6 +107,7 @@ export const {
   showModel,
   hideModel,
   editMode,
+  toggleComplete,
 } = noteSlice.actions;
 export default noteSlice.reducer;
 

@@ -22,7 +22,7 @@ export default function AddNoteModal() {
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [time, setTime] = useState(new Date().toISOString().split("T")[0]);
+  const [time, setTime] = useState(new Date().toISOString().split("T")[0]); // Get current date in yyyy-mm-dd format 
   const [color, setColor] = useState("");
   const dispatch = useDispatch();
   const { isEditing, notes, isModalOpen } = useSelector((state) => state.note);
