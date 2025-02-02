@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../ui/Modal";
 import Input from "../../ui/Input";
 import FormRow from "../../ui/FormRow";
@@ -7,7 +7,7 @@ import Form from "../../ui/Form";
 import DateInput from "../../ui/DateInput";
 import Textarea from "../../ui/Textarea";
 import { ColorCircle, ColorContainer } from "../../ui/ColorCircle";
-import { addNote, updateNote } from "./noteSlice";
+import { addNote, updateNote, hideModel } from "./noteSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const colorsObj = [
@@ -22,22 +22,25 @@ export default function AddNoteModal() {
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [time, setTime] = useState();
+  const [time, setTime] = useState(new Date().toISOString().split("T")[0]);
   const [color, setColor] = useState("");
   const dispatch = useDispatch();
-  const isEditing = useSelector((state) => state.note.isEditing);
+  const { isEditing, notes, isModalOpen } = useSelector((state) => state.note);
 
-  const notes = useSelector((state) => state.note.notes);
-
+  // Reset form when modal is closed or when switching between notes
   useEffect(() => {
-    if (isEditing) {
-      const note = notes.find((note) => note.id == isEditing);
-      setTitle(note.title);
-      setDescription(note.description);
-      setTime(note.time);
-      setColor(note.color);
+    if (isModalOpen && isEditing) {
+      const noteToEdit = notes.find((note) => note.id === isEditing);
+      if (noteToEdit) {
+        setTitle(noteToEdit.title);
+        setDescription(noteToEdit.description);
+        setTime(noteToEdit.time);
+        setColor(noteToEdit.color || "");
+      }
+    } else if (!isModalOpen) {
+      resetForm();
     }
-  }, [isEditing, notes]);
+  }, [isModalOpen, isEditing, notes]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,14 +49,23 @@ export default function AddNoteModal() {
       setError(true);
       return;
     }
-    isEditing
-      ? dispatch(updateNote({ title, description, time, color }))
-      : dispatch(addNote({ title, description, time, color, id: Date.now() }));
 
+    if (isEditing) {
+      dispatch(updateNote({ title, description, time, color }));
+    } else {
+      dispatch(addNote({ title, description, time, color, id: Date.now() }));
+    }
+
+    resetForm();
+    dispatch(hideModel());
+  };
+
+  const resetForm = () => {
     setTitle("");
     setDescription("");
-    setTime("");
+    setTime(new Date().toISOString().split("T")[0]);
     setColor("");
+    setError("");
   };
 
   return (

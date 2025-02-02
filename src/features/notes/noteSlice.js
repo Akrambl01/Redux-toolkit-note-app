@@ -4,41 +4,41 @@ const initialNotes = [
     id: 1,
     title: "My first note",
     description: "This is my first note",
-    time: "12:00",
+    time: "02/02/2024",
     color: "#FE9B72",
   },
   {
     id: 2,
     title: "My second note",
     description: "This is my second note",
-    time: "12:00",
+    time: "03/02/2024",
     color: "#E4EE8E",
   },
   {
     id: 3,
     title: "My third note",
     description: "This is my third note",
-    time: "12:00",
+    time: "04/02/2024",
     color: "#00D4FE",
   },
   {
     id: 4,
     title: "My first note",
     description: "This is my first note",
-    time: "12:00",
+    time: "06/05/2024",
     color: "#FEC971",
   },
   {
     id: 5,
     title: "My second note",
     description: "This is my second note",
-    time: "12:00",
+    time: "24/05/2024",
   },
   {
     id: 6,
     title: "My second note",
     description: "This is my second note",
-    time: "12:00",
+    time: "24/05/2024",
     color: "#B693FD",
   },
 ];
@@ -98,4 +98,4 @@ export const {
 } = noteSlice.actions;
 export default noteSlice.reducer;
 
-export const getNotes = (state) => state.notes;
+// export const getNotes = (state) => state.notes;
