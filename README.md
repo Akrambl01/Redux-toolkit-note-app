@@ -11,7 +11,7 @@ A simple note application built with Redux Toolkit to manage state efficiently.
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/redux-toolkit-note-app.git
+    git clone https://github.com/Akrambl01/redux-toolkit-note-app.git
     ```
 2. Navigate to the project directory:
     ```bash
