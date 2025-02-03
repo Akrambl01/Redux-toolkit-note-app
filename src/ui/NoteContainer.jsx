@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GridContainer = styled.div`
+const NoteContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
   gap: 2rem;
@@ -10,13 +10,14 @@ const GridContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     gap: 5.2rem;
+    background-color: var(--color-blue-100);
     color: var(--color-grey-900);
     padding: 2rem;
-    box-shadow: var(--shadow-sm);
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-grey-100);
     max-height: 40rem;
-    background-color: var(--color-blue-100);
+    box-shadow: var(--shadow-sm);
+    position: relative;
 
     & h3 {
       font-size: 2rem;
@@ -30,7 +31,7 @@ const GridContainer = styled.div`
     }
   }
 
-  & .time{
+  & .date{
     color: var(--color-grey-800);
     font-size: 1.4rem;
   }
@@ -44,4 +45,4 @@ const GridContainer = styled.div`
 
 `;
 
-export default GridContainer;
+export default NoteContainer;

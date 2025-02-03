@@ -1,9 +1,10 @@
 import AddButton from "../ui/AddButton";
 import Row from "../ui/Row";
-import GridContainer from "../ui/GirdContainer";
+import NoteContainer from "../ui/NoteContainer";
 import ButtonIcon, { CompletedButtonIcon } from "../ui/ButtonIcon";
 import Logo from "../ui/Logo";
 import Heading from "../ui/Heading";
+import AddNoteModal from "../features/notes/AddNoteModal";
 import { MdCheckCircle, MdDelete, MdEdit } from "react-icons/md";
 import {
   deleteNote,
@@ -12,42 +13,34 @@ import {
   toggleComplete,
 } from "../features/notes/noteSlice";
 import { useDispatch, useSelector } from "react-redux";
-import AddNoteModal from "../features/notes/AddNoteModal";
 import { useState } from "react";
 
-// Notes component - Main view for displaying and managing notes
 function Notes() {
-  // Redux hooks for state management
-  const dispatch = useDispatch(); // Dispatch function for Redux actions
+  const dispatch = useDispatch(); 
   const notes = useSelector((state) => state.note.notes); // Get notes from Redux store
   const [hoveredNoteId, setHoveredNoteId] = useState(null); // Track which note is hovered
 
   return (
     <Row type="vertical">
-      {/* Header Section */}
       <Row type="horizontal">
-        <Logo /> {/* Application logo */}
+        <Logo />
       </Row>
-
-      {/* Action Bar */}
       <Row type="horizontal">
         {/* Button to open add note modal */}
         <AddButton onClick={() => dispatch(showModel())} />
       </Row>
-
       {/* Main Content Area */}
       <Row>
-        <Heading as="h3">Notes</Heading> {/* Section title */}
+        <Heading as="h3">Notes</Heading>
         {/* Notes Grid Container */}
-        <GridContainer>
+        <NoteContainer>
           {notes.map((note) => (
-            // Individual Note Card
+            // Note Card
             <div
               className="noteItem"
-              key={note.id} // Unique key for React list rendering
+              key={note.id}
               style={{
-                backgroundColor: note.color, // Note color from state
-                position: "relative", // For absolute positioning of child elements
+                backgroundColor: note.color, // Note color from state 
                 opacity: note.completed ? 0.6 : 1, // Reduce opacity for completed notes
               }}
               // Hover handlers for showing completion button
@@ -59,7 +52,6 @@ function Notes() {
                 <CompletedButtonIcon
                   onClick={() => dispatch(toggleComplete(note.id))}
                 >
-                  {/* Green checkmark for completed, gray for incomplete */}
                   <MdCheckCircle color={note.completed ? "green" : "#555"} />
                 </CompletedButtonIcon>
               )}
@@ -70,13 +62,13 @@ function Notes() {
                   textDecoration: note.completed ? "line-through" : "none",
                 }}
               >
-                <h3>{note.title}</h3> {/* Note title */}
-                <p>{note.description}</p> {/* Note description */}
+                <h3>{note.title}</h3>
+                <p>{note.description}</p>
               </div>
 
-              {/* Note Footer with Timestamp and Actions */}
+              {/* Note Footer with date and Actions */}
               <Row type="horizontal">
-                <span className="time">{note.time}</span> {/* Creation time */}
+                <span className="date">{note.date}</span>
                 <span className="actions">
                   {/* Edit Note Button */}
                   <ButtonIcon onClick={() => dispatch(editMode(note.id))}>
@@ -91,8 +83,8 @@ function Notes() {
               </Row>
             </div>
           ))}
-        </GridContainer>
-        {/* Add/Edit Note Modal (conditionally rendered elsewhere) */}
+        </NoteContainer>
+        {/* Add/Edit Note Modal (conditionally rendered ) */}
         <AddNoteModal />
       </Row>
     </Row>

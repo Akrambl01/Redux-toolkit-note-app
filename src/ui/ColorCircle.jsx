@@ -22,9 +22,8 @@ export const ColorCircle = styled.span`
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-top: 5px;
-  
-  // animation
-  
+
+
   &:hover {
     scale: 1.3;
     transition: all 0.4s;
@@ -38,8 +37,8 @@ export const ColorCircle = styled.span`
   ${(props) =>
     props.isActive &&
     css`
-      width: 29px;
-      height: 29px;
+      width: 27px;
+      height: 27px;
       margin-top: 2px;
       border: 1.8px solid var(--color-grey-600);
     `}
